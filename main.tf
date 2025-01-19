@@ -145,9 +145,20 @@ resource "aws_instance" "web" {
   }
 }
 
-output "web_ip" {
-  value       = aws_instance.web.public_ip
-  description = "Public IP of Web instance"
+resource "aws_instance" "web22" {
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = "t3.micro"
+  subnet_id                   = aws_subnet.public_subnet.id
+  availability_zone           = var.availability_zone
+  key_name                    = "terraform"
+  security_groups             = [aws_security_group.my_sg.id]
+  associate_public_ip_address = true
+  tags = {
+    "Name" = "Dev Instance"
+    "env" = var.environment
+  }
 }
+
+
 
 

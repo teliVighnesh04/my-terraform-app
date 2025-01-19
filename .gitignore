@@ -12,8 +12,6 @@
 crash.log
 
 # Override files (if any)
-*.tfvars
-*.tfvars.json
 
 # Sensitive files (if any)
 *.key
